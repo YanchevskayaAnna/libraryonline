@@ -1,0 +1,11 @@
+The "Library Online"
+
+For the work you need to create a database sql "library"
+Either create a database with a different name and to describe its parameters in the file db.properties
+
+To download the book, the user can use the following search options book:
+
+1. Find the right book by name
+2. Find the book of this author
+3. Find books by name and author
+4. See all books and select one from the list
