@@ -12,6 +12,7 @@ import service.AdminController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -53,29 +54,19 @@ public class TestAdminController {
         1928
         I. Ilf and E. Petrov «The Twelve Chairs"*/
 
-        //todo как из значения быстро сделать массив?
-
-        List<Author> authorList = new ArrayList<>();
-        authorList.add(authors.get(1));
-
-        Book book1 = new Book("The Catcher in the Ry", authorList);
+        Book book1 = new Book("The Catcher in the Ry", Arrays.asList(authors.get(1)));
         adminController.createBook(book1);
 
-        authorList.clear();
-        authorList.add(authors.get(0));
-        Book book2 = new Book("We the Living", authorList);
+        Book book2 = new Book("We the Living", Arrays.asList(authors.get(0)));
         adminController.createBook(book2);
 
-        Book book3 = new Book("The Fountainhead", authorList);
+        Book book3 = new Book("The Fountainhead", Arrays.asList(authors.get(0)));
         adminController.createBook(book3);
 
-        Book book4 = new Book("Atlas Shrugged", authorList);
+        Book book4 = new Book("Atlas Shrugged", Arrays.asList(authors.get(0)));
         adminController.createBook(book4);
 
-        authorList.clear();
-        authorList.add(authors.get(2));
-        authorList.add(authors.get(3));
-        Book book5 = new Book("The Twelve Chairs", authorList);
+        Book book5 = new Book("The Twelve Chairs", Arrays.asList(authors.get(2), authors.get(3)));
         adminController.createBook(book5);
 
         return adminController.getAllBooks();
