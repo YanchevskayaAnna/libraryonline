@@ -1,10 +1,12 @@
 package dao.interfaces;
 
+import exception.TableIsEmptyException;
+
 import java.util.List;
 
 public interface AbstractDAO<E> {
 
-    List<E> getAll();
+    List<E> getAll() throws TableIsEmptyException;;
 
     E getEntityById(Integer id);
 

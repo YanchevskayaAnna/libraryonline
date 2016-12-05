@@ -1,4 +1,5 @@
 
+import exception.TableIsEmptyException;
 import model.Author;
 import model.Book;
 import org.junit.*;
@@ -24,7 +25,7 @@ public class TestAdminController {
     private AdminController adminController;
 
     @Before
-    public void beforeTest() {
+    public void beforeTest() throws TableIsEmptyException {
 
         //AUTHORS
         List<Author> authors = createAuthors();
@@ -42,7 +43,7 @@ public class TestAdminController {
 //
 //    }
 
-    private List<Book> createBooks(List<Author> authors) {
+    private List<Book> createBooks(List<Author> authors) throws TableIsEmptyException {
     /*    Ayn Rand
         1936 We the Living
         1943 The Fountainhead
@@ -72,7 +73,7 @@ public class TestAdminController {
         return adminController.getAllBooks();
     }
 
-    private List<Author> createAuthors() {
+    private List<Author> createAuthors() throws TableIsEmptyException {
 
         /*
         Ayn Rand
@@ -92,11 +93,10 @@ public class TestAdminController {
         adminController.createAuthor(author4);
 
         return adminController.getAllAuthors();
-
     }
 
     @Test
-    public void getAllBooks() {
+    public void getAllBooks() throws TableIsEmptyException {
         List<Book> bookList = adminController.getAllBooks();
         Assert.assertNotNull(bookList);
     }

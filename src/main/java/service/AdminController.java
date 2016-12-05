@@ -2,6 +2,7 @@ package service;
 
 import dao.interfaces.AuthorDAO;
 import dao.interfaces.BookDAO;
+import exception.TableIsEmptyException;
 import model.Author;
 import model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class AdminController {
     }
 
     //BOOKS
-    public List<Book> getAllBooks() {
+    public List<Book> getAllBooks() throws TableIsEmptyException {
         return bookDAO.getAll();
     }
 
@@ -46,7 +47,7 @@ public class AdminController {
 
 
     //AUTHORS
-    public List<Author> getAllAuthors() {
+    public List<Author> getAllAuthors() throws TableIsEmptyException {
         return authorDAO.getAll();
     }
 

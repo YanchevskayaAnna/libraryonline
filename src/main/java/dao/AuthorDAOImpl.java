@@ -1,6 +1,7 @@
 package dao;
 
 import dao.interfaces.AuthorDAO;
+import exception.TableIsEmptyException;
 import model.Author;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +17,8 @@ public class AuthorDAOImpl implements AuthorDAO {
     private EntityManager manager;
 
     @Override
-    public List<Author> getAll() {
+    public List<Author> getAll() throws TableIsEmptyException
+    {
         TypedQuery<Author> namedQuery = manager.createNamedQuery("Author.getAll", Author.class);
         return namedQuery.getResultList();
     }

@@ -16,7 +16,8 @@ public class Book {
     @Column
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+//    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "bookauthors",
             joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "author_id", referencedColumnName = "id")})
@@ -56,5 +57,10 @@ public class Book {
 
     public void setAuthorList(List<Author> authorList) {
         this.authorList = authorList;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
