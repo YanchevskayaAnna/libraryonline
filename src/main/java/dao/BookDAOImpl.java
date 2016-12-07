@@ -54,4 +54,38 @@ public class BookDAOImpl implements BookDAO {
     public void deleteAll() {
         manager.createQuery("DELETE FROM Book b").executeUpdate();
     }
+
+    @Override
+    public List<Book> findByName(String name) throws TableIsEmptyException {
+
+        String queryString = "SELECT b FROM Book b WHERE b.name = :bookName";
+        TypedQuery<Book> query = manager.createQuery(queryString, Book.class);
+        query.setParameter("bookName", name);
+        List<Book> resultList = query.getResultList();
+
+        return resultList;
+    }
+
+    @Override
+    public List<Book> findByAuthor(Author author) throws TableIsEmptyException {
+
+        String queryString = "SELECT b FROM Book b join b.authorList a WHERE a.name = :authorName";
+        TypedQuery<Book> query = manager.createQuery(queryString, Book.class);
+        query.setParameter("authorName", author.getName());
+        List<Book> resultList = query.getResultList();
+
+        return resultList;
+    }
+
+    @Override
+    public Book findByNameAuthor(String name, Author author) throws TableIsEmptyException {
+
+        String queryString = "SELECT b FROM Book b join b.authorList a WHERE a.name = :authorName and b.name = :bookName";
+        TypedQuery<Book> query = manager.createQuery(queryString, Book.class);
+        query.setParameter("authorName", author.getName());
+        query.setParameter("bookName", name);
+
+        return query.getSingleResult();
+
+    }
 }

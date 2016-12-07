@@ -29,6 +29,18 @@ public class AdminController {
         return bookDAO.getAll();
     }
 
+    public List<Book> getBooksByAuthor(Author author) throws TableIsEmptyException {
+        return bookDAO.findByAuthor(author);
+    }
+
+    public List<Book> getBooksByName(String bookName) throws TableIsEmptyException {
+        return bookDAO.findByName(bookName);
+    }
+
+    public Book getBookByAuthorName(Author author, String bookName) throws TableIsEmptyException {
+        return bookDAO.findByNameAuthor(bookName, author);
+    }
+
     public Book getBookById(Integer id) {
         return bookDAO.getEntityById(id);
     }

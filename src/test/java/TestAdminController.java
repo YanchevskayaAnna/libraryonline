@@ -24,16 +24,16 @@ public class TestAdminController {
     @Autowired
     private AdminController adminController;
 
-    @Before
-    public void beforeTest() throws TableIsEmptyException {
-
-        //AUTHORS
-        List<Author> authors = createAuthors();
-
-        //BOOKS
-        List<Book> books = createBooks(authors);
-
-    }
+//    @Before
+//    public void beforeTest() throws TableIsEmptyException {
+//
+//        //AUTHORS
+//        List<Author> authors = createAuthors();
+//
+//        //BOOKS
+//        List<Book> books = createBooks(authors);
+//
+//    }
 
 //    @After
 //    public void afterTest() {
@@ -99,6 +99,29 @@ public class TestAdminController {
     public void getAllBooks() throws TableIsEmptyException {
         List<Book> bookList = adminController.getAllBooks();
         Assert.assertNotNull(bookList);
+    }
+
+    @Test
+    public void getBooksByName() throws TableIsEmptyException {
+        List<Book> bookList = adminController.getBooksByName("We the Living");
+        Assert.assertNotNull(bookList);
+        Assert.assertEquals(1, bookList.size());
+    }
+
+    @Test
+    public void getBooksByAuthor() throws TableIsEmptyException {
+        Author author = new Author("Ayn Rand");
+        List<Book> bookList = adminController.getBooksByAuthor(author);
+        Assert.assertNotNull(bookList);
+        Assert.assertEquals(3, bookList.size());
+    }
+
+    @Test
+    public void getBookByAuthorName() throws TableIsEmptyException {
+        Author author = new Author("Ayn Rand");
+        Book book = adminController.getBookByAuthorName(author, "We the Living");
+        Assert.assertNotNull(book);
+        Assert.assertEquals("We the Living", book.getName());
     }
 
 }

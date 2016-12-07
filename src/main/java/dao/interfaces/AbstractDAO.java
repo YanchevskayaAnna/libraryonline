@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AbstractDAO<E> {
 
-    List<E> getAll() throws TableIsEmptyException;;
+    List<E> getAll() throws TableIsEmptyException;
 
     E getEntityById(Integer id);
 

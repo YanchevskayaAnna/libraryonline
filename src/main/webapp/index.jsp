@@ -15,13 +15,16 @@
 
 <script>
     $('#findbyname').click(function () {
-        location.href='findbyname';
+//        location.href='findbyname';
+        location.href='allbooks';
     })
     $('#findbyauthor').click(function () {
-        location.href='findbyauthor';
+//        location.href='findbyauthor';
+        location.href='allbooks';
     })
     $('#findbynameauthor').click(function () {
-        location.href='findbynameauthor';
+//        location.href='findbynameauthor';
+        location.href='allbooks';
     })
     $('#allbooks').click(function () {
         location.href='allbooks';
