@@ -20,7 +20,11 @@ public class AuthorDAOImpl implements AuthorDAO {
     public List<Author> getAll() throws TableIsEmptyException
     {
         TypedQuery<Author> namedQuery = manager.createNamedQuery("Author.getAll", Author.class);
-        return namedQuery.getResultList();
+        List<Author> result = namedQuery.getResultList();
+        if (result.size() == 0) {
+            throw new TableIsEmptyException("Current table is empty");
+        }
+        return result;
     }
 
     @Override
