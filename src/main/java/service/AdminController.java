@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @Service
@@ -60,6 +61,10 @@ public class AdminController {
 
     public File downloadBook(Book book) {
         return bookDAO.downloadBook(book);
+    }
+
+    public String readBook(Book book) throws FileNotFoundException {
+        return bookDAO.readBook(book);
     }
 
     //AUTHORS

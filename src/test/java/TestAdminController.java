@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import service.AdminController;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -136,6 +137,20 @@ public class TestAdminController {
 
         File file = adminController.downloadBook(new Book("We the Living"));
         Assert.assertTrue(file.isFile());
+
+    }
+
+    @Test
+    public void readBook()  {
+
+        String bookText = null;
+
+        try {
+            bookText = adminController.readBook(new Book("We the Living"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Assert.assertEquals("We the Living\n", bookText);
 
     }
 

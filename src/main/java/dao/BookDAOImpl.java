@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.io.File;
+import java.io.*;
 import java.util.List;
 
 @Repository
@@ -91,7 +91,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public Book findByNameAuthor(String name, Author author)  {
+    public Book findByNameAuthor(String name, Author author) {
 
         String queryString = "SELECT b FROM Book b join b.authorList a WHERE a.name = :authorName and b.name = :bookName";
         TypedQuery<Book> query = manager.createQuery(queryString, Book.class);
@@ -104,6 +104,27 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public File downloadBook(Book book) {
-         return new File("src/main/resources/books/" + book.getName() + ".txt");
+        return new File("src/main/resources/books/" + book.getName() + ".txt");
+    }
+
+    @Override
+    public String readBook(Book book) throws FileNotFoundException {
+
+        File file = downloadBook(book);
+        if (!file.exists()) throw new FileNotFoundException(file.getName());
+
+        StringBuilder sb = new StringBuilder();
+
+        try (BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()))){
+            String s;
+            while ((s=in.readLine())!=null){
+                sb.append(s);
+                sb.append("\n");
+            }
+        } catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return sb.toString();
     }
 }
