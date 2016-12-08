@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import service.AdminController;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -127,6 +128,14 @@ public class TestAdminController {
         Book book = adminController.getBookByAuthorName(author, "We the Living");
         Assert.assertNotEquals(null, book);
         Assert.assertEquals("We the Living", book.getName());
+
+    }
+
+    @Test
+    public void downloadBook()  {
+
+        File file = adminController.downloadBook(new Book("We the Living"));
+        Assert.assertTrue(file.isFile());
 
     }
 

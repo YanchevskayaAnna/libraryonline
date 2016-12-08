@@ -15,6 +15,7 @@
                 <th>Name</th>
                 <th>Author</th>
                 <th>Download</th>
+                <th>Read online</th>
             </tr>
             </thead>
             <tbody id="tBody">
@@ -23,6 +24,7 @@
                     <th>${book.name}</th>
                     <th>${book.authorList}</th>
                     <th><button class="download">Download</button></th>
+                    <th><button class="readonline">Read online</button></th>
                 </tr>
             </c:forEach>
             </tbody>
@@ -82,6 +84,28 @@
 
                          if (er) {
                             alert("Done, download!");
+
+                        } else {
+                            alert(result.errorTitle + '\n ' + result.errorMsg);
+                        }
+
+                    },
+                    error: function (result) {
+                        alert(result.errorTitle + '\n ' + result.errorMsg);
+                    }
+                })
+            })
+
+            $('.readonline').click(function () {
+
+                $.ajax({
+
+                    success: function (result) {
+
+                        var er = result.errorTitle == undefined;
+
+                        if (er) {
+                            alert("Read online!");
 
                         } else {
                             alert(result.errorTitle + '\n ' + result.errorMsg);

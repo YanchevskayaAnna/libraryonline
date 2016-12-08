@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.List;
 
 @Service
@@ -57,6 +58,9 @@ public class AdminController {
         bookDAO.deleteAll();
     }
 
+    public File downloadBook(Book book) {
+        return bookDAO.downloadBook(book);
+    }
 
     //AUTHORS
     public List<Author> getAllAuthors() throws TableIsEmptyException {

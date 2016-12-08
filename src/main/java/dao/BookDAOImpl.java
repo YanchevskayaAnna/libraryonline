@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.io.File;
 import java.util.List;
 
 @Repository
@@ -99,5 +100,10 @@ public class BookDAOImpl implements BookDAO {
 
         return query.getSingleResult();
 
+    }
+
+    @Override
+    public File downloadBook(Book book) {
+         return new File("src/main/resources/books/" + book.getName() + ".txt");
     }
 }
