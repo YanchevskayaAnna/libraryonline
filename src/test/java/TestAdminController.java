@@ -99,7 +99,7 @@ public class TestAdminController {
     public void getAllBooks() throws TableIsEmptyException {
 
         List<Book> bookList = adminController.getAllBooks();
-        Assert.assertNotNull(bookList);
+        Assert.assertNotEquals(0, bookList.size());
 
     }
 
@@ -107,7 +107,6 @@ public class TestAdminController {
     public void getBooksByName() throws TableIsEmptyException {
 
         List<Book> bookList = adminController.getBooksByName("We the Living");
-        Assert.assertNotNull(bookList);
         Assert.assertEquals(1, bookList.size());
 
     }
@@ -117,7 +116,6 @@ public class TestAdminController {
 
         Author author = new Author("Ayn Rand");
         List<Book> bookList = adminController.getBooksByAuthor(author);
-        Assert.assertNotNull(bookList);
         Assert.assertEquals(3, bookList.size());
 
     }
@@ -127,7 +125,7 @@ public class TestAdminController {
 
         Author author = new Author("Ayn Rand");
         Book book = adminController.getBookByAuthorName(author, "We the Living");
-        Assert.assertNotNull(book);
+        Assert.assertNotEquals(null, book);
         Assert.assertEquals("We the Living", book.getName());
 
     }
